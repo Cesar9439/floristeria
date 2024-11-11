@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    :root {
+      --primary-color: #4a90e2;
+      --secondary-color: #f0f4f8;
+      --text-color: #333;
+      --border-color: #ddd;
+      --success-color: #28a745;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--secondary-color);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3a7bc8;
+    }
+
+    .status {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: var(--secondary-color);
+      border-radius: 4px;
+    }
+
+    .status p {
+      margin: 0.5rem 0;
+    }
+
+    .status strong {
+      color: var(--success-color);
+    }
+
+    .texto {
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+  <title>Editar Pedido</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Edición de Pedidos - Floristería</h1>
+    <p class="texto">Por motivos de seguridad no se puede cambiar los datos del cliente en la factura solamente los detalles de esta, si es necesario elimine.</p>
+    <form th:action="@{/pedidos/actualizar/{id}(id=${pedido.id})}" th:object="${pedido}" method="post">
+      <input type="hidden" name="_method" value="PUT">
+
+      <h2>Información del Cliente</h2>
+      <label th:for="nombre">Nombre:</label>
+      <input type="text" th:field="*{cliente.nombre}">
+
+      <label th:for="direccion">Dirección:</label>
+      <input type="text" th:field="*{cliente.direccion}">
+
+      <label th:for="contacto">Contacto:</label>
+      <input type="tel" th:field="*{cliente.contacto}">
+
+      <h2>Detalles del Pedido</h2>
+      <label th:for="tipoArreglo">Tipo de Arreglo Floral:</label>
+      <select th:field="*{tipoArreglo}">
+        <option value="">Seleccione una opción</option>
+        <option value="ramo">Ramo</option>
+        <option value="centro_mesa">Centro de Mesa</option>
+        <option value="corona">Corona</option>
+        <option value="bouquet">Bouquet</option>
+      </select>
+
+      <label th:for="ocasion">Ocasión:</label>
+      <input type="text" th:field="*{ocasion}">
+
+      <label th:for="fechaEntrega">Fecha de Entrega:</label>
+      <input type="date" th:field="*{fechaEntrega}">
+
+      <label th:for="presupuesto">Presupuesto:</label>
+      <input type="number" th:field="*{presupuesto}">
+
+      <label th:for="estado">Instrucciones Especiales:</label>
+      <select th:field="*{estado}">
+        <option value="">Seleccione una opción</option>
+        <option value="ENCURSO">En curso</option>
+        <option value="COMPLETADO">Completado</option>
+        <option value="ENTREGADO">Entregado</option>
+      </select>
+
+      <a th:href="@{/pedidos}"><button type="submit">Guardar</button></a>
+    </form>
+
+    <div class="status" >
+      <h2>Estado del Pedido</h2>
+      <p>Estado actual: <strong th:text="${pedido.estado}">En curso</strong></p>
+      <p>Última actualización: <span id="ultima_actualizacion">2023-05-10 15:30</span></p>
+    </div>
+  </div>
+</body>
+</html>

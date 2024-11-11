@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f0f4f8;
+            --text-color: #333;
+            --border-color: #ddd;
+            --success-color: #28a745;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3a7bc8;
+        }
+
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .status p {
+            margin: 0.5rem 0;
+        }
+
+        .status strong {
+            color: var(--success-color);
+        }
+
+        .texto {
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <title>Editar Pedido</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Entrega - Floristería</h1>
+        <form th:action="@{/entregas/guardar}" th:object="${entrega}" method="post">
+            <input type="hidden" name="_method" value="PUT">
+
+            <h2>Información del Conductor</h2>
+            <label th:for="nombre">Nombre:</label>
+            <input type="text" th:field="*{nombre}">
+
+            <label th:for="ruta">Ruta:</label>
+            <input type="text" th:field="*{ruta}">
+
+            <label th:for="pedido">Id del Pedido:</label>
+            <select th:field="*{pedido.id}">
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option th:each="pedido : ${pedidos}"
+                        th:value="${pedido.id}"
+                        th:text="${pedido.id}"></option>
+            </select>
+
+
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>

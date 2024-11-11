@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+            div {
+                max-width: 1200px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                color: #2c3e50;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            th {
+                background-color: #3498db;
+                color: #fff;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f8f8f8;
+            }
+
+            tr:hover {
+                background-color: #e8f4f8;
+            }
+
+            a {
+                text-decoration: none;
+                padding: 6px 12px;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+
+            a[href*="editar"] {
+                color: #fff;
+                background-color: #2ecc71;
+                margin-right: 5px;
+            }
+
+            a[href*="eliminar"] {
+                color: #fff;
+                background-color: #e74c3c;
+            }
+
+            a[href*="nuevo"] {
+                display: inline-block;
+                margin-top: 20px;
+                padding: 10px 15px;
+                background-color: #3498db;
+                color: #fff;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            a:hover {
+                opacity: 0.8;
+            }
+        </style>
+    <title>Inventario</title>
+</head>
+<body>
+    <div>
+        <h1>Inventario de Flores</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Color</th>
+                <th>Variedad</th>
+                <th>Cantidad</th>
+                <th>Precio de Compra</th>
+                <th>Precio de Venta</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="flor : ${flores}">
+                <td th:text="${flor.tipoFlor}"></td>
+                <td th:text="${flor.color}"></td>
+                <td th:text="${flor.variedad}"></td>
+                <td th:text="${flor.cantidadDisponible}"></td>
+                <td th:text="${flor.precioCompra}"></td>
+                <td th:text="${flor.precioVenta}"></td>
+                <td>
+                    <a th:href="@{/inventario/editar/{id}(id=${flor.idFlor})}">Editar</a>
+                    <a th:href="@{/inventario/eliminar/{id}(id=${flor.idFlor})}">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/inventario/nuevo}">Agregar nueva flor</a>
+    </div>
+</body>
+</html>

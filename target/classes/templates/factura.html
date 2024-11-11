@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finanzas y Facturación - Florería</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Finanzas y Facturación</h1>
+
+  <div class="card">
+    <h2 th:text="'Factura ' + ${pedidos.id}">Factura </h2>
+    <p th:text="'Fecha: ' + ${pedidos.fechaEntrega}">Fecha: 2023-06-10</p>
+    <p th:text="'Cliente: ' + ${pedidos.cliente.id}">Cliente: María González</p>
+
+    <table>
+      <caption>Detalles del pedido</caption>
+      <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="pedido : ${pedidos}">
+        <td th:text="${pedidos.tipoArreglo}"></td>
+        <td th:text="${pedidos.presupuesto}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Procesar Pago</h2>
+    <form id="payment-form">
+      <div class="form-group">
+        <label for="card-number">Número de tarjeta</label>
+        <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+      </div>
+      <div class="form-group">
+        <label for="expiry-date">Fecha de expiración</label>
+        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="number" id="cvv" name="cvv" placeholder="123" required>
+      </div>
+      <button type="submit">Procesar Pago</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Historial de Pagos</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>ID de Pago</th>
+        <th>Fecha</th>
+        <th>Monto</th>
+        <th>Método de Pago</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>001</td>
+        <td>2023-06-10</td>
+        <td>$67.00</td>
+        <td>Tarjeta de crédito</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById('payment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Pago procesado con éxito');
+    });
+  </script>
+</body>
+</html>
