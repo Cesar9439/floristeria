@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Map;
+
 @Entity
 public class Flor {
     @Id
@@ -16,6 +18,7 @@ public class Flor {
     private int cantidadDisponible;
     private double precioCompra;
     private double precioVenta;
+
 
     public Flor() {
 

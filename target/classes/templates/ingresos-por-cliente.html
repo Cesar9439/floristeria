@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ingresos por Cliente</title>
+</head>
+<body>
+<h1>Ingresos Generados por Cliente</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Cliente</th>
+        <th>Ingresos Totales</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ingreso : ${ingresosPorCliente}">
+        <td th:text="${ingreso[0]}">Nombre Cliente</td>
+        <td th:text="${ingreso[1]}">Ingresos Totales</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

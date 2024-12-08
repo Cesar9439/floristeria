@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informes de Floristería</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .card p {
+            flex-grow: 1;
+            color: #7f8c8d;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<h1>Informes de Floristería</h1>
+<div class="grid-container">
+
+    <div class="card">
+        <h2>Popularidad de Arreglos Florales</h2>
+        <p>Analiza y muestra los arreglos florales más populares basados en las ventas y preferencias de los clientes.</p>
+        <a th:href="@{/informes/popularidad-arreglos}" class="btn">Generar Informe</a>
+    </div>
+    <div class="card">
+        <h2>Ingresos por Cliente</h2>
+        <p>Calcula y presenta los ingresos generados por cada cliente, identificando a los clientes más valiosos.</p>
+        <a th:href="@{/informes/ingresos-por-cliente}" class="btn">Generar Informe</a>
+    </div>
+</div>
+</body>
+</html>

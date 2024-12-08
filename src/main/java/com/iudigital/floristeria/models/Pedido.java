@@ -14,18 +14,20 @@ public class Pedido {
     private String tipoArreglo;
     private String ocasion;
     private String fechaEntrega;
+    private int cantidad;
     private double presupuesto;
     private Estado estado;
     
     public Pedido() {
     }
 
-    public Pedido(Long id, Cliente cliente, String tipoArreglo, String ocasion, String fechaEntrega, double presupuesto, Estado estado) {
+    public Pedido(Long id, Cliente cliente, String tipoArreglo, String ocasion, String fechaEntrega, int cantidad, double presupuesto, Estado estado) {
         this.id = id;
         this.cliente = cliente;
         this.tipoArreglo = tipoArreglo;
         this.ocasion = ocasion;
         this.fechaEntrega = fechaEntrega;
+        this.cantidad = cantidad;
         this.presupuesto = presupuesto;
         this.estado = estado;
     }
@@ -68,6 +70,14 @@ public class Pedido {
 
     public void setFechaEntrega(String fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public double getPresupuesto() {

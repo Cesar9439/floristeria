@@ -119,7 +119,17 @@
         <h1>Agregar Nueva Flor</h1>
         <form th:action="@{/inventario/guardar}" th:object="${flor}" method="post">
             <label th:for="tipo">Tipo:</label>
-            <input type="text" th:field="*{tipoFlor}" /><br/>
+            <select th:field="*{tipoFlor}">
+                <option value="">Seleccione un tipo de flor</option>
+                <option value="rosa">Rosa</option>
+                <option value="margarita">Margarita</option>
+                <option value="tulipan">Tulipán</option>
+                <option value="orquidea">Orquídea</option>
+                <option value="lirio">Lirio</option>
+                <option value="clavel">Clavel</option>
+                <option value="jazmin">Jazmín</option>
+                <option value="gardenia">Gardenia</option>
+            </select>
 
             <label th:for="color">Color:</label>
             <input type="text" th:field="*{color}" /><br/>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Popularidad de Arreglos Florales</title>
+</head>
+<body>
+<h1>Popularidad de Arreglos Florales</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tipo de Arreglo</th>
+        <th>Popularidad</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="arreglo : ${popularidadArreglos}">
+        <td th:text="${arreglo[0]}">Tipo de Arreglo</td>
+        <td th:text="${arreglo[1]}">Popularidad</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

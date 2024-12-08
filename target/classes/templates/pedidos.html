@@ -82,6 +82,23 @@
             background-color: #27ae60;
             text-decoration: none;
         }
+
+        button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #2ecc71;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+            text-decoration: none;
+        }
+
+
     </style>
 </head>
 <body>
@@ -99,7 +116,8 @@
                     <th>Tipo de Arreglo Floral</th>
                     <th>Ocasión</th>
                     <th>Fecha de Entrega</th>
-                    <th>Presupuesto</th>
+                    <th>Cantidad</th>
+                    <th>Total de Venta</th>
                     <th>Estado</th>
                     <th>Acciones</th>
 
@@ -114,6 +132,7 @@
                     <td th:text="${pedido.getTipoArreglo()}"></td>
                     <td th:text="${pedido.getOcasion()}"></td>
                     <td th:text="${pedido.getFechaEntrega()}"></td>
+                    <td th:text="${pedido.getCantidad()}"></td>
                     <td th:text="${pedido.getPresupuesto()}"></td>
                     <td th:text="${pedido.getEstado()}"></td>
                     <td>
@@ -126,6 +145,13 @@
 
             <a th:href="@{/pedidos/nuevo}">Empezar nuevo pedido</a>
         </div>
+        <button onclick="imprimirPagina()">Imprimir Página</button>
+
     </div>
+    <script>
+        function imprimirPagina() {
+            window.print();
+        }
+    </script>
 </body>
 </html>

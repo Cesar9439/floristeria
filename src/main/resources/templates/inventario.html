@@ -86,6 +86,21 @@
             a:hover {
                 opacity: 0.8;
             }
+
+        button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #2ecc71;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+            text-decoration: none;
+        }
         </style>
     <title>Inventario</title>
 </head>
@@ -120,6 +135,13 @@
             </tbody>
         </table>
         <a th:href="@{/inventario/nuevo}">Agregar nueva flor</a>
+        <button onclick="imprimirPagina()">Imprimir Página</button>
     </div>
+
+    <script>
+        function imprimirPagina() {
+            window.print();
+        }
+    </script>
 </body>
 </html>

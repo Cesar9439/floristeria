@@ -82,6 +82,22 @@
             background-color: #27ae60;
             text-decoration: none;
         }
+
+        button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #2ecc71;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
@@ -117,6 +133,13 @@
                 <a th:href="@{/entregas/nuevo}">Empezar nueva entrega</a>
             </div>
         </div>
+        <button onclick="imprimirPagina()">Imprimir Página</button>
     </div>
+
+    <script>
+        function imprimirPagina() {
+            window.print();
+        }
+    </script>
 </body>
 </html>

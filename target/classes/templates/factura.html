@@ -68,71 +68,37 @@
   <div class="card">
     <h2 th:text="'Factura ' + ${pedidos.id}">Factura </h2>
     <p th:text="'Fecha: ' + ${pedidos.fechaEntrega}">Fecha: 2023-06-10</p>
-    <p th:text="'Cliente: ' + ${pedidos.cliente.id}">Cliente: María González</p>
+    <p th:text="'Cliente: ' + ${pedidos.cliente.nombre}">Cliente: María González</p>
+    <p th:text="'Dirección: ' + ${pedidos.cliente.direccion}">Dirección: Carrera 3a</p>
+    <p th:text="'Contacto: ' + ${pedidos.cliente.contacto}">Contacto: 310 486 5216</p>
+
 
     <table>
-      <caption>Detalles del pedido</caption>
+      <h2>Detalles del pedido</h2>
       <thead>
       <tr>
         <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Estado</th>
         <th>Precio Total</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="pedido : ${pedidos}">
         <td th:text="${pedidos.tipoArreglo}"></td>
+        <td th:text="${pedidos.cantidad}"></td>
+        <td th:text="${pedidos.estado}"></td>
         <td th:text="${pedidos.presupuesto}"></td>
       </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="card">
-    <h2>Procesar Pago</h2>
-    <form id="payment-form">
-      <div class="form-group">
-        <label for="card-number">Número de tarjeta</label>
-        <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
-      </div>
-      <div class="form-group">
-        <label for="expiry-date">Fecha de expiración</label>
-        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
-      </div>
-      <div class="form-group">
-        <label for="cvv">CVV</label>
-        <input type="number" id="cvv" name="cvv" placeholder="123" required>
-      </div>
-      <button type="submit">Procesar Pago</button>
-    </form>
-  </div>
-
-  <div class="card">
-    <h2>Historial de Pagos</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>ID de Pago</th>
-        <th>Fecha</th>
-        <th>Monto</th>
-        <th>Método de Pago</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>001</td>
-        <td>2023-06-10</td>
-        <td>$67.00</td>
-        <td>Tarjeta de crédito</td>
-      </tr>
-      </tbody>
-    </table>
+    <button onclick="imprimirPagina()">Imprimir Página</button>
   </div>
 
   <script>
-    document.getElementById('payment-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Pago procesado con éxito');
-    });
+    function imprimirPagina() {
+      window.print();
+    }
   </script>
 </body>
 </html>

@@ -2,8 +2,10 @@ package com.iudigital.floristeria.service;
 
 import com.iudigital.floristeria.models.Cliente;
 import com.iudigital.floristeria.models.Flor;
+import com.iudigital.floristeria.models.Inventario;
 import com.iudigital.floristeria.models.Pedido;
 import com.iudigital.floristeria.repository.ClienteRepository;
+import com.iudigital.floristeria.repository.FlorRepository;
 import com.iudigital.floristeria.repository.PedidosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class PedidosService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+
     // Obtener todos
     public List<Pedido> obtenerTodo() {
         return pedidosRepository.findAll();
@@ -28,6 +31,7 @@ public class PedidosService {
 
     // Guardar
     public void guardar(Pedido pedido, Cliente cliente) {
+
         clienteRepository.save(cliente);
         pedidosRepository.save(pedido);
     }
@@ -46,6 +50,7 @@ public class PedidosService {
             updated.setTipoArreglo(pedido.getTipoArreglo());
             updated.setOcasion(pedido.getOcasion());
             updated.setFechaEntrega(pedido.getFechaEntrega());
+            updated.setCantidad(pedido.getCantidad());
             updated.setPresupuesto(pedido.getPresupuesto());
             updated.setEstado(pedido.getEstado());
 
@@ -57,4 +62,13 @@ public class PedidosService {
     public void eliminar(Long id) {
         pedidosRepository.deleteById(id);
     }
+
+    public List<Object[]> getArrangementPopularity() {
+        return pedidosRepository.findArrangementPopularity();
+    }
+
+    public List<Object[]> getFindIncomeByClient() {
+        return pedidosRepository.findIncomeByClient();
+    }
+
 }
